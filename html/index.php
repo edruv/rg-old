@@ -23,6 +23,7 @@
 	<!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
 	<!--[if lt IE 9]><script src="../js/ie8-responsive-file-warning.js"></script><![endif]-->
 	<script src="../js/ie-emulation-modes-warning.js"></script>
+	<script src="../js/jquery-3.3.1.min.js"></script>
 
 	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 	<!--[if lt IE 9]>
@@ -34,19 +35,14 @@
 EL REQUIRED_ONCE DA PEDOS SI ES QUE LO PONES. -->
 <?php
 
-	session_start();
-	
-	require_once '../php/config.php';
-	require_once '../php/methods.php';
+require_once '../php/config.php';
+require_once '../php/methods.php';
 
-	print_r("entre");
+	session_start();
 
 	if(!isset($_SESSION['user'])){
 		header('location: ../');
 	}
-
-	$cnf = db();
-	$conn = dbconnection($cnf);
 
 ?>
 <nav class="navbar navbar-inverse navbar-fixed-top">
@@ -293,7 +289,7 @@ EL REQUIRED_ONCE DA PEDOS SI ES QUE LO PONES. -->
 	<!-- Placed at the end of the document so the pages load faster -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 	<script>
-		window.jQuery || document.write('<script src="../js/vendor/jquery.min.js"><\/script>')
+		window.jQuery || document.write('<script src="../js/jquery.min.js"><\/script>')
 	</script>
 	<script src="../js/bootstrap.min.js"></script>
 	<!-- Just to make our placeholder images work. Don't actually copy the next line! -->
