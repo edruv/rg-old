@@ -1,11 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="es">
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 	<meta name="description" content="">
 	<link rel="icon" href="../images/16x16.png">
 
@@ -15,7 +13,8 @@
 
 	<link href="../css/ie10-viewport-bug-workaround.css" rel="stylesheet">
 
-	<link href="../css/dashboard2.css" rel="stylesheet">
+	<link href="../css/dashboard.css" rel="stylesheet">
+	<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 
 	<!--[if lt IE 9]><script src="../js/ie8-responsive-file-warning.js"></script><![endif]-->
 	<script src="../js/ie-emulation-modes-warning.js"></script>
@@ -26,7 +25,6 @@
 		<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 	<![endif]-->
 </head>
-
 <body>
 	<nav class="navbar navbar-inverse navbar-fixed-top">
 		<div class="container-fluid">
@@ -42,57 +40,54 @@
 			<div id="navbar" class="navbar-collapse collapse">
 				<ul class="nav navbar-nav">
 					<li class="dropdown">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Cliente <span class="caret"></span></a>
+						<a href="#" class="dropdown-toggle text-center" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-fw fa-users"></i> Clientes <i class="fa fa-caret-down"></i></a>
 						<ul class="dropdown-menu">
-							<li><a href="#">Action</a></li>
-							<li><a href="#">Another action</a></li>
-							<li><a href="#">Something else here</a></li>
+							<li><a href="#"><i class="fa fa-fw fa-plus"></i> Agregar Cliente</a></li>
+							<li><a href="#"><i class="fa fa-fw fa-users"></i> Mostrar Clientes</a></li>
+							<li><a href="#"><i class="fa fa-fw fa-search"></i> Buscar Clientes</a></li>
 							<li role="separator" class="divider"></li>
-							<li><a href="#">Separated link</a></li>
-							<li role="separator" class="divider"></li>
-							<li><a href="#">One more separated link</a></li>
+							<li><a href="#"><i class="fa fa-fw fa-pencil"></i> Editar Cliente</a></li>
+							<!-- <li role="separator" class="divider"></li> -->
+							<li><a href="#"><i class="fa fa-fw fa-trash-o"></i> Eliminar Cliente</a></li>
 						</ul>
 					</li>
 					<li class="dropdown">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Trabajo <span class="caret"></span></a>
+						<a href="#" class="dropdown-toggle text-center" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-fw fa-gavel"></i> Trabajo <i class="fa fa-caret-down"></i></a>
 						<ul class="dropdown-menu">
-							<li><a href="#">Action</a></li>
-							<li><a href="#">Another action</a></li>
-							<li><a href="#">Something else here</a></li>
+							<li><a href="#"><i class="fa fa-fw fa-gavel"></i> Agregar Trabajo</a></li>
+							<li><a href="#"><i class="fa fa-fw fa-eye"></i> Ver Trabajos</a></li>
+							<li><a href="#"><i class="fa fa-fw fa-search"></i> Buscar Trabajo</a></li>
 							<li role="separator" class="divider"></li>
-							<li><a href="#">Separated link</a></li>
-							<li role="separator" class="divider"></li>
-							<li><a href="#">One more separated link</a></li>
+							<li><a href="#"><i class="fa fa-fw fa-pencil"></i> Editar Trabajo</a></li>
+							<li><a href="#"><i class="fa fa-fw fa-trash-o"></i> Eliminar Trabajo</a></li>
 						</ul>
 					</li>
 					<li class="dropdown">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Piezas <span class="caret"></span></a>
+						<a href="#" class="dropdown-toggle text-center" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-fw fa-gear"></i> Piezas <i class="fa fa-caret-down"></i></a>
 						<ul class="dropdown-menu">
-							<li><a href="#">Action</a></li>
-							<li><a href="#">Another action</a></li>
-							<li><a href="#">Something else here</a></li>
+							<li><a href="#"><i class="fa fa-fw fa-gear"></i> Agregar Pieza</a></li>
+							<li><a href="#"><i class="fa fa-fw fa-gears"></i> Ver Piezas</a></li>
+							<li><a href="#"><i class="fa fa-fw fa-search"></i> Buscar Pieza</a></li>
 							<li role="separator" class="divider"></li>
-							<li><a href="#">Separated link</a></li>
-							<li role="separator" class="divider"></li>
-							<li><a href="#">One more separated link</a></li>
+							<li><a href="#"><i class="fa fa-fw fa-pencil"></i> Editar Pieza</a></li>
+							<li><a href="#"><i class="fa fa-fw fa-trash-o"></i> Eliminar Pieza</a></li>
 						</ul>
 					</li>
 					<li class="dropdown">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Rentas <span class="caret"></span></a>
+						<a href="#" class="dropdown-toggle text-center" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-fw fa-handshake-o"></i> Rentas <i class="fa fa-caret-down"></i></a>
 						<ul class="dropdown-menu">
-							<li><a href="#">Action</a></li>
-							<li><a href="#">Another action</a></li>
-							<li><a href="#">Something else here</a></li>
+							<li><a href="#"><i class="fa fa-fw fa-handshake-o"></i> Agregar Renta</a></li>
+							<li><a href="#"><i class="fa fa-fw fa-hourglass-half"></i> Ver Rentas</a></li>
+							<li><a href="#"><i class="fa fa-fw fa-search"></i> Buscar Renta</a></li>
 							<li role="separator" class="divider"></li>
-							<li><a href="#">Separated link</a></li>
-							<li role="separator" class="divider"></li>
-							<li><a href="#">One more separated link</a></li>
+							<li><a href="#"><i class="fa fa-fw fa-pencil"></i> Editar Renta</a></li>
+							<li><a href="#"><i class="fa fa-fw fa-trash-o"></i> Eliminar Renta</a></li>
 						</ul>
 					</li>
 
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
-					<li><a href="#">Salir</a></li>
+					<li><a href="../php/exit.php">Salir <i class="fa fa-fw fa-sign-out"></i></a></li>
 				</ul>
 			</div>
 		</div>
@@ -276,18 +271,12 @@
 		</div>
 	</div>
 
-	<!-- Bootstrap core JavaScript
-================================================== -->
-	<!-- Placed at the end of the document so the pages load faster -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 	<script>
 		window.jQuery || document.write('<script src="../js/jquery.min.js"><\/script>')
 	</script>
 	<script src="../js/bootstrap.min.js"></script>
-	<!-- Just to make our placeholder images work. Don't actually copy the next line! -->
-	<script src="../js/vendor/holder.min.js"></script>
-	<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+	<script src="../js/holder.min.js"></script>
 	<script src="../js/ie10-viewport-bug-workaround.js"></script>
 </body>
-
 </html>
