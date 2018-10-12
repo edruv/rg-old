@@ -2,7 +2,7 @@
 	function db(){
 		$info = array(
 			'host' => 'localhost',
-			'dbname' => 'taller',
+			'dbname' => 'refgar',
 			'user' => 'root',
 			'password' => ''
 		);
