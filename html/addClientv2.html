@@ -135,7 +135,16 @@
 						}
 					});
 
-					$('#campoApellido').focusout(function() {
+					$('#campoApellidoPaterno').focusout(function() {
+						var apellido = $(this).val();
+						if (name.test(name)) {
+							$(this).parent().removeClass('has-error');
+						} else {
+							$(this).parent().addClass('has-error');
+						}
+					});
+
+					$('#campoApellidoMaterno').focusout(function() {
 						var apellido = $(this).val();
 						if (name.test(name)) {
 							$(this).parent().removeClass('has-error');
@@ -258,8 +267,12 @@
 							<input type="text" class="form-control" name="campoNombre" id="campoNombre" value="">
 						</div>
 						<div class="form-group">
-							<label for="campoApellido">Apellido</label>
-							<input type="text" class="form-control" name="campoApellido" id="campoApellido" value="">
+							<label for="campoApellido">Apellido Paterno</label>
+							<input type="text" class="form-control" name="campoApellidoPaterno" id="campoApellidoPaterno" value="">
+						</div>
+						<div class="form-group">
+							<label for="campoApellido">Apellido Materno</label>
+							<input type="text" class="form-control" name="campoApellidoMaterno" id="campoApellidoMaterno" value="">
 						</div>
 						<div class="form-group">
 							<label for="campoCalle">Calle</label>
