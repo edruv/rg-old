@@ -10,8 +10,6 @@
 		<link href="../css/bootstrap.min.css" rel="stylesheet">
 		<link href="../css/ie10-viewport-bug-workaround.css" rel="stylesheet">
 		<link href="../css/dashboard.css" rel="stylesheet">
-		<!-- <link href="../css/dashboard2.css" rel="stylesheet"> -->
-		<!-- <link href="../css/registrarback.css" rel="stylesheet"> -->
 		<link href="../css/registrar.css" rel="stylesheet">
 		<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 		<!--[if lt IE 9]><script src="../js/ie8-responsive-file-warning.js"></script><![endif]-->
@@ -39,46 +37,45 @@
 						<li class="dropdown">
 							<a href="#" class="dropdown-toggle text-center" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-fw fa-users"></i> Clientes <i class="fa fa-caret-down"></i></a>
 							<ul class="dropdown-menu">
-								<li><a href="#"><i class="fa fa-fw fa-plus"></i> Agregar Cliente</a></li>
+								<li><a href="#"><i class="fa fa-fw fa-user-plus"></i> Agregar Cliente</a></li>
 								<li><a href="#"><i class="fa fa-fw fa-users"></i> Mostrar Clientes</a></li>
 								<li><a href="#"><i class="fa fa-fw fa-search"></i> Buscar Clientes</a></li>
 								<li role="separator" class="divider"></li>
+								<li><a href="#"><i class="fa fa-fw fa-user-times"></i> Eliminar Cliente</a></li>
 								<li><a href="#"><i class="fa fa-fw fa-pencil"></i> Editar Cliente</a></li>
-								<!-- <li role="separator" class="divider"></li> -->
-								<li><a href="#"><i class="fa fa-fw fa-trash-o"></i> Eliminar Cliente</a></li>
 							</ul>
 						</li>
 						<li class="dropdown">
-							<a href="#" class="dropdown-toggle text-center" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-fw fa-gavel"></i> Trabajo <i class="fa fa-caret-down"></i></a>
+							<a href="#" class="dropdown-toggle text-center" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-fw fa-briefcase"></i> Trabajo <i class="fa fa-caret-down"></i></a>
 							<ul class="dropdown-menu">
-								<li><a href="#"><i class="fa fa-fw fa-gavel"></i> Agregar Trabajo</a></li>
-								<li><a href="#"><i class="fa fa-fw fa-eye"></i> Ver Trabajos</a></li>
+								<li><a href="#"><i class="fa fa-fw fa-plus"></i> Agregar Trabajo</a></li>
+								<li><a href="#"><i class="fa fa-fw fa-list-alt"></i> Ver Trabajos</a></li>
 								<li><a href="#"><i class="fa fa-fw fa-search"></i> Buscar Trabajo</a></li>
 								<li role="separator" class="divider"></li>
-								<li><a href="#"><i class="fa fa-fw fa-pencil"></i> Editar Trabajo</a></li>
 								<li><a href="#"><i class="fa fa-fw fa-trash-o"></i> Eliminar Trabajo</a></li>
+								<li><a href="#"><i class="fa fa-fw fa-pencil"></i> Editar Trabajo</a></li>
 							</ul>
 						</li>
 						<li class="dropdown">
 							<a href="#" class="dropdown-toggle text-center" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-fw fa-gear"></i> Piezas <i class="fa fa-caret-down"></i></a>
 							<ul class="dropdown-menu">
-								<li><a href="#"><i class="fa fa-fw fa-gear"></i> Agregar Pieza</a></li>
-								<li><a href="#"><i class="fa fa-fw fa-gears"></i> Ver Piezas</a></li>
+								<li><a href="#"><i class="fa fa-fw fa-plus"></i> Agregar Pieza</a></li>
+								<li><a href="#"><i class="fa fa-fw fa-list-alt"></i> Ver Piezas</a></li>
 								<li><a href="#"><i class="fa fa-fw fa-search"></i> Buscar Pieza</a></li>
 								<li role="separator" class="divider"></li>
-								<li><a href="#"><i class="fa fa-fw fa-pencil"></i> Editar Pieza</a></li>
 								<li><a href="#"><i class="fa fa-fw fa-trash-o"></i> Eliminar Pieza</a></li>
+								<li><a href="#"><i class="fa fa-fw fa-pencil"></i> Editar Pieza</a></li>
 							</ul>
 						</li>
 						<li class="dropdown">
 							<a href="#" class="dropdown-toggle text-center" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-fw fa-handshake-o"></i> Rentas <i class="fa fa-caret-down"></i></a>
 							<ul class="dropdown-menu">
-								<li><a href="#"><i class="fa fa-fw fa-handshake-o"></i> Agregar Renta</a></li>
+								<li><a href="#"><i class="fa fa-fw fa-plus"></i> Agregar Renta</a></li>
 								<li><a href="#"><i class="fa fa-fw fa-hourglass-half"></i> Ver Rentas</a></li>
 								<li><a href="#"><i class="fa fa-fw fa-search"></i> Buscar Renta</a></li>
 								<li role="separator" class="divider"></li>
-								<li><a href="#"><i class="fa fa-fw fa-pencil"></i> Editar Renta</a></li>
 								<li><a href="#"><i class="fa fa-fw fa-trash-o"></i> Eliminar Renta</a></li>
+								<li><a href="#"><i class="fa fa-fw fa-pencil"></i> Editar Renta</a></li>
 							</ul>
 						</li>
 					</ul>
@@ -118,6 +115,7 @@
 						var text = /[A-z0-9.-_ ,]*/g;
 						var number = /([0-9]{1,6}[\s]{1}[a-z]{1,2}|[0-9]{1,6}|[0-9]{1,6}[A-z]{1,2})$/i;
 						var colonia = /[A-Za-z]+/;
+
 						$('#campoNombre').focusout(function() {
 							var nombre = $(this).val();
 							if (name.test(name)) {
@@ -198,7 +196,6 @@
 							console.log(tel);
 						});
 						$('#fmCliente').submit(function(e) {
-						//$('#registrarBtn').click(function(e) {
 							e.preventDefault();
 							var name = $('#campoNombre').val(),
 							lname1 = $('#campoApellidoPaterno').val(),
@@ -215,22 +212,46 @@
 									type: 'POST',
 									data: datos
 								})
-								.done(function(status) {
-									status = JSON.parse(status);
-									console.log(status);
-									console.log("complete");
+								.done(function(s) {
+									s = JSON.parse(s);
+									switch (s.status) {
+										case 'true':
+											$("html, body").animate({ scrollTop: 0 }, "slow");
+											// limpiar form
+											// mandar a header/top
+											// mandar mensaje alerta de insercion exitosa
+										break;
+										case 'error':
+										$("html, body").animate({ scrollTop: 0 }, "slow");
+										$('#message').append('<div class="alert alert-warning alert-dismissible" role="alert">'+
+										'<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>'+
+										s.mensaje+' </div>');
+										// mandar a header/top
+										// mandar mensaje alerta de insercion fallida
+										break;
+										case 'log':
+											// imprimir en consola el error
+											// alerta intentar mas tarde o x
+										break;
+										case 'db':
+										// imprimir en consola el error
+										// alerta intentar mas tarde o x
+										break;
+									}
 								})
 								.fail(function() {
 									console.log("error");
 								});
 							}else{
-								console.log('no entro\n');
+								//avisar campos faltantes
+								// console.log('no entro\n');
 							}
-							
+
 						});
 					});
 				</script>
 				<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+					<div id="message" class="text-center"></div>
 					<div class="page-header text-center">
 						<h1>Ingrese datos de cliente</h1>
 					</div>
