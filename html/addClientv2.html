@@ -216,26 +216,30 @@
 									s = JSON.parse(s);
 									switch (s.status) {
 										case 'true':
-											$("html, body").animate({ scrollTop: 0 }, "slow");
-											// limpiar form
-											// mandar a header/top
-											// mandar mensaje alerta de insercion exitosa
-										break;
+												$("html, body").animate({ scrollTop: 0 }, "slow");
+												$('#message').append('<div class="alert alert-success alert-dismissible" role="alert">'+
+												'<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>'+
+												s.mensaje+' <i class="fa fa-'+s.icon+'"></i></div>');
+											break;
 										case 'error':
-										$("html, body").animate({ scrollTop: 0 }, "slow");
-										$('#message').append('<div class="alert alert-warning alert-dismissible" role="alert">'+
-										'<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>'+
-										s.mensaje+' </div>');
-										// mandar a header/top
-										// mandar mensaje alerta de insercion fallida
-										break;
+											$("html, body").animate({ scrollTop: 0 }, "slow");
+											$('#message').append('<div class="alert alert-warning alert-dismissible" role="alert">'+
+											'<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>'+
+											s.mensaje+' <i class="fa fa-'+s.icon+'"></i></div>');
+											break;
 										case 'log':
-											// imprimir en consola el error
-											// alerta intentar mas tarde o x
+											$("html, body").animate({ scrollTop: 0 }, "slow");
+											$('#message').append('<div class="alert alert-error alert-dismissible" role="alert">'+
+											'<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>'+
+											'Favor de intentar mas tarde <i class="fa fa-'+s.icon+'"></i></div>');
+											console.log(s.mensaje);
 										break;
 										case 'db':
-										// imprimir en consola el error
-										// alerta intentar mas tarde o x
+											$("html, body").animate({ scrollTop: 0 }, "slow");
+											$('#message').append('<div class="alert alert-error alert-dismissible" role="alert">'+
+											'<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>'+
+											'Error al conectar a la base de datos, intentalo mas tarde <i class="fa fa-'+s.icon+'"></i></div>');
+											console.log(s.mensaje);
 										break;
 									}
 								})
@@ -257,11 +261,11 @@
 					</div>
 					<form class="text-center col-md-8 col-md-offset-2" id="fmCliente" >
 						<div class="form-group">
-							<label for="campoNombre">Nombre</label>
+							<label for="campoNombre">Nombre <i class="fa fa-asterisk text-danger"></i></label>
 							<input type="text" class="form-control" name="campoNombre" id="campoNombre" value="" required>
 						</div>
 						<div class="form-group">
-							<label for="campoApellido">Apellido Paterno</label>
+							<label for="campoApellido">Apellido Paterno <i class="fa fa-asterisk text-danger"></i></label>
 							<input type="text" class="form-control" name="campoApellidoPaterno" id="campoApellidoPaterno" value="" required>
 						</div>
 						<div class="form-group">
@@ -269,12 +273,12 @@
 							<input type="text" class="form-control" name="campoApellidoMaterno" id="campoApellidoMaterno" value="">
 						</div>
 						<div class="form-group">
-							<label for="campoCalle">Calle</label>
+							<label for="campoCalle">Calle <i class="fa fa-asterisk text-danger"></i></label>
 							<input type="text" class="form-control" name="campoCalle" id="campoCalle" value="" required>
 						</div>
 						<!-- <div class="form-group"> -->
 						<div class="col-md-6 form-group">
-							<label for="campoExt">No. exterior</label>
+							<label for="campoExt">No. exterior <i class="fa fa-asterisk text-danger"></i></label>
 							<input type="text" class="form-control" name="campoExt" id="campoExt" value="" required>
 						</div>
 						<div class="col-md-6 form-group">
@@ -283,15 +287,15 @@
 						</div>
 						<!-- </div> -->
 						<div class="form-group">
-							<label for="campoColonia">Colonia</label>
+							<label for="campoColonia">Colonia <i class="fa fa-asterisk text-danger"></i></label>
 							<input type="text" class="form-control" name="campoColonia" id="campoColonia" value="" required>
 						</div>
 						<div class="form-group">
-							<label for="campoTelefono">Teléfono</label>
+							<label for="campoTelefono">Teléfono <i class="fa fa-asterisk text-danger"></i></label>
 							<input type="text" class="form-control" name="campoTelefono" id="campoTelefono" value="" required>
 						</div>
 						<div class="form-group">
-							<label for="Municipio"> Locación </label>
+							<label for="Municipio"> Locación <i class="fa fa-asterisk text-danger"></i></label>
 							<select name="Municipio" id="Municipio" class="form-control text-center" required>
 								<option selected disabled>Selecciona una Ciudad</option>
 								<option value="San Juan Cosala">San Juan Cosala</option>
@@ -303,6 +307,7 @@
 								<option value="Puente Grande">Puente Grande</option>
 							</select>
 						</div>
+						<p class="text-muted">Los campos con un <i class="fa fa-asterisk text-danger"></i> son obligatorios.</p>
 						<input type="submit" name="registrarBtn" id="registrarBtn" value="Registrar" class="btn btn-primary col-md-6 col-md-offset-3 col-xs-12">
 					</form>
 				</div>

@@ -36,32 +36,59 @@
 							$stmt = $conn->prepare('INSERT INTO cliente(idusuario,numeroint,numeroext,calle,colonia,municipio,telefono) VALUES(:idu, :ni, :ne,:calle, :col, :mun, :tel)');
 							$info = $stmt->execute(array(':idu' =>$idUsuario, ':ni' =>$interior, ':ne' =>$ext, ':calle' =>$calle, ':col' => $colonia, ':mun' => $municipio, ':tel' => $telefono));
 							if($info){
-								$status = ['status'=>'true'];
+								$status = [
+									'status'=>'true',
+									'icon'=> 'check-circle-o'
+								];
 								echo json_encode($status);
 							}else{
-								$status = ['status'=>'error','mensaje' =>"Ocurrio un error al crear cliente"];
+								$status = [
+									'status'=>'error',
+									'mensaje'=>"Ocurrio un error al crear cliente",
+									'icon'=>'exclamation-circle'
+								];
 								echo json_encode($status);
 							}
 						}else{
-							$status = ['status'=>'log','mensaje' =>"No se encontro usuario"];
+							$status = [
+								'status'=>'log',
+								'mensaje' =>"No se encontro usuario",
+								'icon'=>'exclamation-circle'
+							];
 							echo json_encode($status);
 						}
 					}else{
-						$status = ['status'=>'log','mensaje' =>"Error al crear usuario"];
+						$status = [
+							'status'=>'log',
+							'mensaje' =>"Error al crear usuario",
+							'icon'=>'exclamation-circle'
+						];
 						echo json_encode($status);
 					}
 				} else {
-					$status = ['status'=>'error','mensaje' =>"El usuario \"$nombre $apellidop $apellidom\" ya existe."];
+					$status = [
+						'status'=>'error',
+						'mensaje' =>"El usuario \"$nombre $apellidop $apellidom\" ya existe.",
+						'icon'=>'exclamation-triangle'
+					];
 					echo json_encode($status);
 				}
 
 			}else{
-				$status = ['status'=>'db','mensaje' =>"Error de conexión"];
+				$status = [
+					'status'=>'db',
+					'mensaje' =>"Error de conexión",
+					'icon'=>'exclamation-circle'
+				];
 				echo json_encode($status);
 			}
-		} else {
-			$status = ['status'=>'error','mensaje' =>"Algunos campos obligatorios estan vacios."];
-			echo json_encode($status);
+			} else {
+				$status = [
+					'status'=>'error',
+					'mensaje' =>"Algunos campos obligatorios estan vacios.",
+					'icon'=>'exclamation-triangle'
+				];
+				echo json_encode($status);
 		}
 
 	}
