@@ -37,48 +37,40 @@
 			$('#login').submit(function(e) {
 				e.preventDefault();
 				var usr = $('#user').val(),
-					passw = md5($('#password').val());
+					passw = $('#password').val();
 				if (usr != '' && passw != '') {
 					var a = $(this).serializeArray();
+					a[1]=({name:'password',value: md5(passw)});
 					a.push({
 						name: 'btnLogin',
 						value: 'true'
 					});
 					$.ajax({
-							url: 'php/signin.php',
-							type: 'POST',
-							// dataType: 'Intelligent Guess',
-							data: a
-						})
-
-						.done(function(dta){
-
-							dta = JSON.parse(dta);
-							switch (dta.work) {
-								case "true":
-									window.location.replace("html/index.php");
-								break;
-								case "false":
-									$('#messages').append('<li>'+dta.message+'</li>')
-								break;
-							}
-							console.log(dta);
-
-						})
-
-						.fail(function() {
-							console.log("error");
-						});
+						url: 'php/signin.php',
+						type: 'POST',
+						data: a
+					})
+					.done(function(dta){
+						dta = JSON.parse(dta);
+						switch (dta.work) {
+							case "true":
+								window.location.replace("html/index.php");
+							break;
+							case "false":
+								$('#messages').append('<li>'+dta.message+'</li>')
+							break;
+						}
+					})
+					.fail(function() {
+						console.log("error");
+					});
 				}
-
 			});
-
 		});
 	</script>
 	<div class="container">
 		<form class="col-md-4 col-md-offset-4 form-signin text-center" id="login">
 			<h1 class="">Iniciar Sesión</h1>
-
 			<div>
 				<label for="user">Usuario</label>
 				<input type="text" id="user" name="user" value="" class="form-control">

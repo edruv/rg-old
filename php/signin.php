@@ -1,16 +1,16 @@
 <?php
-	
+
 	require_once 'config.php';
 	require_once 'methods.php';
 
 	if (isset($_POST['btnLogin'])) {
-		
+
 		$user = $_POST['user'];
 		$pass = $_POST['password'];
 
 		if(!empty($user)&&!empty($pass)){
-			
 			session_start();
+
 			$db = db();
 			$conexion = dbconnection($db);
 
@@ -23,9 +23,9 @@
 
 				if (!empty($data)) {
 
-					$pass = $data['id'].md5($pass);
+					$pass = $data['id'].$pass;
 					if($pass == $data['contrasena']){
-						
+
 						$work = ['work' => 'true'];
 						$info = ['nickname' => $data['nickname'],'idempleado' => $data['id']];
 						$_SESSION['user'] = json_encode($info);
@@ -36,13 +36,13 @@
 						}
 
 					}else {
-						
+
 						session_destroy();
 						$work = ['work' => 'false','message' => 'Contraseña no coincide'];
 						echo json_encode($work);
 					}
 				}else {
-					
+
 					session_destroy();
 					$work =['work' => 'false','message'=> 'El usuario '.$user.' no existe'];
 					echo json_encode($work);
