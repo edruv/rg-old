@@ -22,8 +22,8 @@
 				$stmt->execute(array(':llave' => $llave));
 				$checkuser = $stmt->fetch(PDO::FETCH_ASSOC);
 
-				if (false) {
-				// if (empty($checkuser)) {
+				// if (false) {
+				if (empty($checkuser)) {
 					$stmt = $conn->prepare('INSERT into usuario(nombre,apellidom,apellidop,llave) values(:name,:apm,:app,:ll)');
 					$info = $stmt->execute(array(':name'=> $nombre, ':apm' => $apellidom,':app' => $apellidop, ':ll' => $llave));
 					if($info){
