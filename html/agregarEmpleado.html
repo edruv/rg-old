@@ -105,105 +105,169 @@
 				</div>
 				<script type="text/javascript">
 				$(document).ready(function() {
-				var text = /[A-Za-z]+/;
-				var cant = /[0-9{1,2}+]/;
-				var mail =
-				/^(?:(?:[\w`~!#$^&*\-=;:{}'|?]+(?:(?:\.(?:"(?:\\?[\w`~!#$%^&*\-=+;:{}'|?\.()<>\[\] @]|\\"|\\\\)*"|[\w`~!#$%^&*\-=+;:{}'|,?\/]+))*\.[\w`~!#$%^&*\-=+;:{}'|?\/]+)?)|(?:"(?:\\?[\w`~!#$%^&*\-=+;:{}'|?\.()<>\[\] @]|\\"|\\\\)+"))@(?:[a-zA-Z\d\-]+(?:\.[a-zA-Z\d\-]+)*|\[\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}\])$/;
-				var pass = /[A-z0-9.-_ ,]*/g;
-				$('#campoNombre').focusout(function() {
-				var nombre = $(this).val();
-				if (text.test(nombre)) {
-					$(this).parent().removeClass('has-error');
-				} else {
-					$(this).parent().addClass('has-error');
-				}
-				});
-				$('#campoApellidoP').focusout(function() {
-				var apellido = $(this).val();
-				if (text.test(apellido)) {
-					$(this).parent().removeClass('has-error');
-				} else {
-					$(this).parent().addClass('has-error');
-				}
-				});
-				$('#campoApellidoM').focusout(function() {
-				var apellido = $(this).val();
-				if (text.test(apellido)) {
-					$(this).parent().removeClass('has-error');
-				} else {
-					$(this).parent().addClass('has-error');
-				}
-				});
-				$('#contrasena').focusout(function() {
-				var contrasena = $(this).val();
-				if (pass.test(contrasena)) {
-					$(this).parent().removeClass('has-error');
-				} else {
-					$(this).parent().addClass('has-error');
-				}
-				});
-				$('#campoEmail').focusout(function() {
-				var email = $(this).val();
-				if (mail.test(email)) {
-					$(this).parent().removeClass('has-error');
-				} else {
-					$(this).parent().addClass('has-error');
-				}
-				});
-				$('#campoApodo').focusout(function() {
-				var apodo = $(this).val();
-				if (text.test(apodo)) {
-					$(this).parent().removeClass('has-error');
-				} else {
-					$(this).parent().addClass('has-error');
-				}
-				});
-				$('#formEmployee').submit(function(e) {
-				e.preventDefault();
-				var name =$('#campoNombre').val(), lname1 =$('#campoApellidoP').val(), lname2 =$('#campoApellidoM').val(), pwd =$('#contrasena').val(), email=$('#campoEmail').val(), nname =$('#campoApodo').val();
-				if(name !== '' && lname1 !== '' && lname2 !== '' && pwd !== '' && email !== '' && nname !== ''){
-					var datos = $('#formEmployee').serializeArray();
-					datos.push({name: 'btnRegister' , value: true})
-					$.ajax({
-						url: '../php/agregarEmpleado.php',
-						type: 'POST',
-						data: datos
-					})
-					.done(function(s) {
-						s = JSON.parse(s);
-						switch(s.status){
-							case 'true':
-							break;
-							case 'error':
-							break;
-							case 'log':
-							break;
-							case 'db':
-							break;
+					var text = /[A-Za-z]+/;
+					var cant = /[0-9{1,2}+]/;
+					var mail = /^(?:(?:[\w`~!#$^&*\-=;:{}'|?]+(?:(?:\.(?:"(?:\\?[\w`~!#$%^&*\-=+;:{}'|?\.()<>\[\] @]|\\"|\\\\)*"|[\w`~!#$%^&*\-=+;:{}'|,?\/]+))*\.[\w`~!#$%^&*\-=+;:{}'|?\/]+)?)|(?:"(?:\\?[\w`~!#$%^&*\-=+;:{}'|?\.()<>\[\] @]|\\"|\\\\)+"))@(?:[a-zA-Z\d\-]+(?:\.[a-zA-Z\d\-]+)*|\[\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}\])$/;
+					var pass = /[A-z0-9.-_ ,]*/g;
+					$('#campoNombre').focusout(function() {
+						var nombre = $(this).val();
+						if (text.test(nombre)) {
+							$(this).parent().removeClass('has-error');
+						} else {
+							if ($(this).val() === "") {
+								$(this).parent().removeClass('has-error');
+							} else {
+								$(this).parent().addClass('has-error');
+							}
 						}
-					})
-					.fail(function() {
-						console.log("error");
-					})
-					.always(function() {
-						console.log("complete");
 					});
-					
-				}
-				});
+					$('#campoApellidoP').focusout(function() {
+						var apellido = $(this).val();
+						if (text.test(apellido)) {
+							$(this).parent().removeClass('has-error');
+						} else {
+							if ($(this).val() === "") {
+								$(this).parent().removeClass('has-error');
+							} else {
+								$(this).parent().addClass('has-error');
+							}
+						}
+					});
+					$('#campoApellidoM').focusout(function() {
+						var apellido = $(this).val();
+						if (text.test(apellido)) {
+							$(this).parent().removeClass('has-error');
+						} else {
+							if ($(this).val() === "") {
+								$(this).parent().removeClass('has-error');
+							} else {
+								$(this).parent().addClass('has-error');
+							}
+						}
+					});
+					$('#contrasena').focusout(function() {
+						var contrasena = $(this).val();
+						if (pass.test(contrasena)) {
+							$(this).parent().removeClass('has-error');
+						} else {
+							if ($(this).val() === "") {
+								$(this).parent().removeClass('has-error');
+							} else {
+								$(this).parent().addClass('has-error');
+							}
+						}
+					});
+					$('#confcontrasena').focusout(function() {
+						var contrasena = $(this).val();
+						if (pass.test(contrasena)) {
+							if (contrasena !== $('#contrasena').val()) {
+								$(this).parent().addClass('has-error');
+								$('#contrasena').parent().addClass('has-error');
+
+								if(!$('#cnc').length){
+									$(this).parent().append('<p id="cnc" class="text-danger">Las Contraseñas no coinciden</p>');
+								}
+							} else {
+								$('#contrasena').parent().removeClass('has-error');
+								$(this).parent().removeClass('has-error');
+								$('#cnc').remove();
+
+							}
+						} else {
+							if ($(this).val() === "") {
+								$(this).parent().removeClass('has-error');
+							} else {
+								$(this).parent().addClass('has-error');
+							}
+						}
+					});
+					$('#campoEmail').focusout(function() {
+						var email = $(this).val();
+						if (mail.test(email)) {
+							$(this).parent().removeClass('has-error');
+						} else {
+							if ($(this).val() === "") {
+								$(this).parent().removeClass('has-error');
+							} else {
+								$(this).parent().addClass('has-error');
+							}
+						}
+					});
+					$('#campoApodo').focusout(function() {
+						var apodo = $(this).val();
+						if (text.test(apodo)) {
+							$(this).parent().removeClass('has-error');
+						} else {
+							if ($(this).val() === "") {
+								$(this).parent().removeClass('has-error');
+							} else {
+								$(this).parent().addClass('has-error');
+							}
+						}
+					});
+					$('#formEmployee').submit(function(e) {
+						e.preventDefault();
+
+						var name =$('#campoNombre').val(), lname1 =$('#campoApellidoP').val(), lname2 =$('#campoApellidoM').val(), pwd =$('#contrasena').val(), email=$('#campoEmail').val(), nname =$('#campoApodo').val();
+
+						if(name !== '' && lname1 !== '' && lname2 !== '' && pwd !== '' && email !== '' && nname !== ''){
+							var datos = $('#formEmployee').serializeArray();
+							datos.push({name: 'btnRegister' , value: true})
+
+							$.ajax({
+								url: '../php/agregarEmpleado.php',
+								type: 'POST',
+								data: datos
+							})
+							.done(function(s) {
+								s = JSON.parse(s);
+								switch (s.status) {
+									case 'true':
+											$("html, body").animate({ scrollTop: 0 }, "slow");
+											$('#message').append('<div class="alert alert-success alert-dismissible" role="alert">'+
+											'<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>'+
+											'El empleado ha sido registrado exitosamente! <i class="fa fa-'+s.icon+'"></i></div>');
+										break;
+									case 'error':
+										$("html, body").animate({ scrollTop: 0 }, "slow");
+										$('#message').append('<div class="alert alert-warning alert-dismissible" role="alert">'+
+										'<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>'+
+										s.mensaje+' <i class="fa fa-'+s.icon+'"></i></div>');
+										break;
+									case 'log':
+										$("html, body").animate({ scrollTop: 0 }, "slow");
+										$('#message').append('<div class="alert alert-error alert-dismissible" role="alert">'+
+										'<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>'+
+										'Favor de intentar mas tarde <i class="fa fa-'+s.icon+'"></i></div>');
+										console.log(s.mensaje);
+									break;
+									case 'db':
+										$("html, body").animate({ scrollTop: 0 }, "slow");
+										$('#message').append('<div class="alert alert-error alert-dismissible" role="alert">'+
+										'<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>'+
+										'Error al conectar a la base de datos, intentalo mas tarde <i class="fa fa-'+s.icon+'"></i></div>');
+										console.log(s.mensaje);
+									break;
+								}
+							})
+							.fail(function() {
+								console.log("error");
+							});
+						}
+					});
 				});
 				</script>
 				<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-					<div class="page-header text-center">
-						<h1>Ingrese información de Empleado</h1>
-					</div>
+					<div id="message" class="text-center"></div>
+					<h1 class="page-header text-center">Alta de Empleado</h1>
+
 					<form class="text-center col-md-8 col-md-offset-2" id="formEmployee">
 						<div class="form-group">
-							<label for="campoNombre">Nombre</label>
+							<label for="campoNombre">Nombre <i class="fa fa-asterisk"></i></label>
 							<input type="text" class="form-control" name="campoNombre" id="campoNombre" value="" required>
 						</div>
 						<div class="form-group">
-							<label for="campoApellidoP">Apellido paterno</label>
+							<label for="campoApellidoP">Apellido paterno <i class="fa fa-asterisk"></i></label>
 							<input type="text" class="form-control" name="campoApellidoP" id="campoApellidoP" value="" required>
 						</div>
 						<div class="form-group">
@@ -211,22 +275,34 @@
 							<input type="text" class="form-control" name="campoApellidoM" id="campoApellidoM" value="">
 						</div>
 						<div class="form-group">
-							<label for="contrasena">Password</label>
-							<input type="password" class="form-control" name="contrasena" id="contrasena" value="" required>
-						</div>
-						<div class="form-group">
-							<label for="campoEmail">Email</label>
+							<label for="campoEmail">Email <i class="fa fa-asterisk"></i></label>
 							<input type="text" class="form-control col-xs-3" name="campoEmail" id="campoEmail" value="" required>
 						</div>
 						<div class="form-group">
-							<label for="campoApodo">Apodo / Nombre Usuario</label>
+							<label for="contrasena">Contraseña <i class="fa fa-asterisk"></i></label>
+							<input type="password" class="form-control" name="contrasena" id="contrasena" value="" required>
+						</div>
+						<div class="form-group">
+							<label for="confcontrasena">Confirmar Contraseña <i class="fa fa-asterisk"></i></label>
+							<input type="password" class="form-control" name="confcontrasena" id="confcontrasena" value="" required>
+						</div>
+						<div class="form-group">
+							<label for="campoApodo">Apodo / Nombre Usuario <i class="fa fa-asterisk"></i></label>
 							<input type="text" class="form-control col-xs-3" name="campoApodo" id="campoApodo" value="" required>
 						</div>
-						<input type="submit" name="submit" value="Registrar" class="btn btn-primary col-md-6 col-md-offset-3 col-xs-12">
+						<!-- <div class="form-group">
+							<input type="submit" name="submit" value="Registrar" class="btn btn-primary">
+						</div> -->
+						<input type="submit" id="submit" name="submit" value="Registrar" class="btn btn-primary col-md-6 col-md-offset-3 col-xs-12">
 					</form>
 				</div>
 			</div>
 		</div>
+		<style>
+			#submit{
+				margin-top: 1em;
+			}
+		</style>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 		<script>
 		window.jQuery || document.write('<script src="../js/jquery.min.js"><\/script>')
