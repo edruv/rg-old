@@ -7,6 +7,10 @@ form {
 	border-radius: .5em;
 	background: rgba(61,112,178, 0.2);
 }
+.fa-asterisk{
+	-webkit-text-stroke: 1px white;
+	color: red;
+}
 @media screen and (max-width: 992px) {
 	form{
 		padding-bottom: 3.5em;

@@ -16,6 +16,7 @@
 
 	<link href="../css/dashboard.css" rel="stylesheet">
 	<link href="../css/registrar.css" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.2/css/bootstrap-select.min.css">
 
 	<!--[if lt IE 9]><script src="../js/ie8-responsive-file-warning.js"></script><![endif]-->
 	<script src="../js/ie-emulation-modes-warning.js"></script>
@@ -114,7 +115,35 @@
 			<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 				<h1 class="page-header text-center">Registrar Trabajo</h1>
 
-				<form id="agregarTrabajo" class="text-center col-md-8 col-md-offset-2 ">
+				<form id="agregarTrabajo" class="col-md-8 col-md-offset-2 text-center">
+					<div class="form-group">
+						<label for="clientes">Selecciona un cliente</label>
+						<select name="clientes" id="clientes" class="selectpicker form-control text-center" data-live-search="true">
+							<option selected disabled class="text-center">Selecciona un cliente</option>
+						</select>
+					</div>
+					<div id="table" class="table-responsive">
+						<table class="table table-striped table-bordered">
+							<tbody>
+								<tr>
+									<th>ID:</th>
+									<td id="cid"></td>
+									<th>Nombre:</th>
+									<td id="cnom"></td>
+								</tr>
+								<tr>
+									<th>Direccion:</th>
+									<td id="cdir" colspan="3"></td>
+								</tr>
+								<tr>
+									<!-- <th></th> -->
+									<td colspan="2" id="cdd"></td>
+									<th>Telefono:</th>
+									<td id="ctel"></td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
 					<div class="form-group">
 						<label for="">Tipo de Trabajo</label>
 						<select class="form-control" name="tipoDeT" id="selectTipoDeT">
@@ -154,15 +183,70 @@
 							<option>7</option>
 						</select>
 					</div>
-					<div class="form-group text-center">
-						<input type="button" name="caract" value="Crear" class="btn btn-default col-md-6">
-					</div>
-
+						<input type="button" name="caract" value="Crear" class="btn btn-primary col-md-6">
 				</form>
+				<script type="text/javascript">
+				String.prototype.capitalize = function() {
+					return this.charAt(0).toUpperCase() + this.slice(1);
+				}
+					$(document).ready(function() {
+						$('#table').hide();
+						$.ajax({
+							url: '../php/agregarTrabajo.php',
+							type: 'GET',
+							data: {clientes: 'on'}
+						})
+						.done(function(cli) {
+							cli = JSON.parse(cli);
+							for (i = 0; i < cli.length; i++) {
+								$('#clientes').append('<option data-tokens="'+cli[i].telefono+'" value="'+cli[i].id+'" data-subtext="'+cli[i].telefono+'">'+cli[i].nombre.capitalize()+' '+cli[i].apellidop.capitalize()+' '+cli[i].apellidom.capitalize()+'</option>');
+							}
+							$('#clientes').selectpicker('refresh');
+						})
+						.fail(function() {
+							console.log("error");
+						});
+
+						$('#clientes').change(function() {
+							var id = $(this).val();
+							$.ajax({
+								url: '../php/agregarTrabajo.php',
+								type: 'GET',
+								data: {cliente: id}
+							})
+							.done(function(cli) {
+								$('#table').show();
+								cli = JSON.parse(cli);
+								if (!$('#cid').length) {
+									$('#cid').append(cli[0].id);
+									$('#cnom').append(cli[0].nombre.capitalize()+' '+cli[0].apellidop.capitalize()+' '+cli[0].apellidom.capitalize());
+									$('#cdir').append(cli[0].calle.capitalize()+' N° '+cli[0].numeroext+' (Int:'+cli[0].numeroint+')');
+									$('#cdd').append('Colonia: '+cli[0].colonia.capitalize()+', Munc:'+cli[0].municipio.capitalize());
+									$('#ctel').append(cli[0].telefono);
+								} else {
+									$('#cid').html(cli[0].id);
+									$('#cnom').html(cli[0].nombre.capitalize()+' '+cli[0].apellidop.capitalize()+' '+cli[0].apellidom.capitalize());
+									$('#cdir').html(cli[0].calle.capitalize()+'  #'+cli[0].numeroext+' (Int:'+cli[0].numeroint+')');
+									$('#cdd').html('Colonia: '+cli[0].colonia.capitalize()+', Munc:'+cli[0].municipio.capitalize());
+									$('#ctel').html(cli[0].telefono);
+								}
+							})
+							.fail(function() {
+								console.log("error");
+							});
+							// console.log(id);
+						});
+
+					});
+				</script>
 <!--  -->
+<style>
+	form{
+		margin-bottom: 5em;
+	}
+</style>
 			<div class="old">
-				<br>
-				<form class="adduser text-justify col-md-5 col-lg-10 col-sm-2 col-md-offset-3 col-lg-offset-2">
+				<form class="text-center col-md-5 col-lg-10 col-sm-2 col-md-offset-3 col-lg-offset-2">
 						<div class="form-group">
 							<label for="campoNombre">Nombre</label>
 							<input type="text" class="form-control" name="campoNombre" id="campoNombre" value="">
@@ -271,6 +355,7 @@
 	<script>
 		window.jQuery || document.write('<script src="../js/jquery.min.js"><\/script>')
 	</script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.2/js/bootstrap-select.min.js"></script>
 	<script src="../js/bootstrap.min.js"></script>
 	<script src="../js/holder.min.js"></script>
 	<script src="../js/ie10-viewport-bug-workaround.js"></script>
