@@ -12,6 +12,7 @@
 		<link href="../css/dashboard.css" rel="stylesheet">
 		<link href="../css/registrar.css" rel="stylesheet">
 		<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.2/css/bootstrap-select.min.css">
 		<!--[if lt IE 9]><script src="../js/ie8-responsive-file-warning.js"></script><![endif]-->
 		<script src="../js/ie-emulation-modes-warning.js"></script>
 		<script src="../js/jquery-3.3.1.min.js"></script>
@@ -119,9 +120,13 @@
 						$('#campoNombre').focusout(function() {
 							var nombre = $(this).val();
 							if (name.test(name)) {
-								$(this).parent().removeClass('has-error')
+								$(this).parent().removeClass('has-error');
 							} else {
-								$(this).parent().addClass('has-error')
+								if($(this).val() === ""){
+									$(this).parent().removeClass('has-error');
+								}else{
+									$(this).parent().addClass('has-error');
+								}
 							}
 						});
 						$('#campoApellidoPaterno').focusout(function() {
@@ -129,25 +134,35 @@
 							if (name.test(name)) {
 								$(this).parent().removeClass('has-error');
 							} else {
-								$(this).parent().addClass('has-error');
+								if($(this).val() === ""){
+									$(this).parent().removeClass('has-error');
+								}else{
+									$(this).parent().addClass('has-error');
+								}
 							}
 						});
 						$('#campoApellidoMaterno').focusout(function() {
 							var apellido = $(this).val();
 							if (name.test(name)) {
 								$(this).parent().removeClass('has-error');
-							} else if($(this).val() === ""){
+							}else{
+								if($(this).val() === ""){
 									$(this).parent().removeClass('has-error');
 								}else{
 									$(this).parent().addClass('has-error');
 								}
+							}
 						});
 						$('#campoCalle').focusout(function() {
 							var calle = $(this).val();
 							if (colonia.test(calle)) {
 								$(this).parent().removeClass('has-error');
 							} else {
-								$(this).parent().addClass('has-error');
+								if($(this).val() === ""){
+									$(this).parent().removeClass('has-error');
+								}else{
+									$(this).parent().addClass('has-error');
+								}
 							}
 						});
 						$('#campoExt').focusout(function() {
@@ -155,15 +170,19 @@
 							if (number.test(nExt)) {
 								$(this).parent().removeClass('has-error');
 							} else {
-								$(this).parent().addClass('has-error');
+								if($(this).val() === ""){
+									$(this).parent().removeClass('has-error');
+								}else{
+									$(this).parent().addClass('has-error');
+								}
 							}
 						});
 						$('#campoInt').focusout(function() {
 							var nInt = $(this).val();
-							if (nInt != '') {
-								if (number.test(nInt)) {
-									$(this).parent().removeClass('has-error');
-								} else if($(this).val() === ""){
+							if (number.test(nInt)) {
+								$(this).parent().removeClass('has-error');
+							}else{
+								if($(this).val() === ""){
 									$(this).parent().removeClass('has-error');
 								}else{
 									$(this).parent().addClass('has-error');
@@ -175,7 +194,11 @@
 							if (colonia.test(suburb)) {
 								$(this).parent().removeClass('has-error');
 							} else {
-								$(this).parent().addClass('has-error');
+								if($(this).val() === ""){
+									$(this).parent().removeClass('has-error');
+								}else{
+									$(this).parent().addClass('has-error');
+								}
 							}
 						});
 						$('#Municipio').focusout(function() {
@@ -183,7 +206,11 @@
 							if(municp === ""){
 								$(this).parent().removeClass('has-error');
 							}else{
-								$(this).parent().addClass('has-error');
+								if($(this).val() === ""){
+									$(this).parent().removeClass('has-error');
+								}else{
+									$(this).parent().addClass('has-error');
+								}
 							}
 						});
 						$('#campoTelefono').focusout(function() {
@@ -191,9 +218,12 @@
 							if (phone.test(tel)) {
 								$(this).parent().removeClass('has-error');
 							} else {
-								$(this).parent().addClass('has-error');
+								if($(this).val() === ""){
+									$(this).parent().removeClass('has-error');
+								}else{
+									$(this).parent().addClass('has-error');
+								}
 							}
-							console.log(tel);
 						});
 						$('#fmCliente').submit(function(e) {
 							e.preventDefault();
@@ -219,7 +249,7 @@
 												$("html, body").animate({ scrollTop: 0 }, "slow");
 												$('#message').append('<div class="alert alert-success alert-dismissible" role="alert">'+
 												'<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>'+
-												s.mensaje+' <i class="fa fa-'+s.icon+'"></i></div>');
+												'El cliente ha sido registrado exitoxamente!. <i class="fa fa-'+s.icon+'"></i></div>');
 											break;
 										case 'error':
 											$("html, body").animate({ scrollTop: 0 }, "slow");
@@ -261,11 +291,11 @@
 					</div>
 					<form class="text-center col-md-8 col-md-offset-2" id="fmCliente" >
 						<div class="form-group">
-							<label for="campoNombre">Nombre <i class="fa fa-asterisk text-danger"></i></label>
+							<label for="campoNombre">Nombre <i class="fa fa-asterisk"></i></label>
 							<input type="text" class="form-control" name="campoNombre" id="campoNombre" value="" required>
 						</div>
 						<div class="form-group">
-							<label for="campoApellido">Apellido Paterno <i class="fa fa-asterisk text-danger"></i></label>
+							<label for="campoApellido">Apellido Paterno <i class="fa fa-asterisk"></i></label>
 							<input type="text" class="form-control" name="campoApellidoPaterno" id="campoApellidoPaterno" value="" required>
 						</div>
 						<div class="form-group">
@@ -273,12 +303,12 @@
 							<input type="text" class="form-control" name="campoApellidoMaterno" id="campoApellidoMaterno" value="">
 						</div>
 						<div class="form-group">
-							<label for="campoCalle">Calle <i class="fa fa-asterisk text-danger"></i></label>
+							<label for="campoCalle">Calle <i class="fa fa-asterisk"></i></label>
 							<input type="text" class="form-control" name="campoCalle" id="campoCalle" value="" required>
 						</div>
 						<!-- <div class="form-group"> -->
 						<div class="col-md-6 form-group">
-							<label for="campoExt">No. exterior <i class="fa fa-asterisk text-danger"></i></label>
+							<label for="campoExt">No. exterior <i class="fa fa-asterisk"></i></label>
 							<input type="text" class="form-control" name="campoExt" id="campoExt" value="" required>
 						</div>
 						<div class="col-md-6 form-group">
@@ -287,16 +317,16 @@
 						</div>
 						<!-- </div> -->
 						<div class="form-group">
-							<label for="campoColonia">Colonia <i class="fa fa-asterisk text-danger"></i></label>
+							<label for="campoColonia">Colonia <i class="fa fa-asterisk"></i></label>
 							<input type="text" class="form-control" name="campoColonia" id="campoColonia" value="" required>
 						</div>
 						<div class="form-group">
-							<label for="campoTelefono">Teléfono <i class="fa fa-asterisk text-danger"></i></label>
+							<label for="campoTelefono">Teléfono <i class="fa fa-asterisk"></i></label>
 							<input type="text" class="form-control" name="campoTelefono" id="campoTelefono" value="" required>
 						</div>
 						<div class="form-group">
-							<label for="Municipio"> Locación <i class="fa fa-asterisk text-danger"></i></label>
-							<select name="Municipio" id="Municipio" class="form-control text-center" required>
+							<label for="Municipio"> Locación <i class="fa fa-asterisk"></i></label>
+							<select name="Municipio" id="Municipio" class="selectpicker form-control text-center" required>
 								<option selected disabled>Selecciona una Ciudad</option>
 								<option value="San Juan Cosala">San Juan Cosala</option>
 								<option value="Guadalajara">Guadalajara</option>
@@ -307,7 +337,7 @@
 								<option value="Puente Grande">Puente Grande</option>
 							</select>
 						</div>
-						<p class="text-muted">Los campos con un <i class="fa fa-asterisk text-danger"></i> son obligatorios.</p>
+						<p class="text-muted">Los campos con un <i class="fa fa-asterisk"></i> son obligatorios.</p>
 						<input type="submit" name="registrarBtn" id="registrarBtn" value="Registrar" class="btn btn-primary col-md-6 col-md-offset-3 col-xs-12">
 					</form>
 				</div>
@@ -317,6 +347,7 @@
 		<script>
 		window.jQuery || document.write('<script src="../js/jquery.min.js"><\/script>')
 		</script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.2/js/bootstrap-select.min.js"></script>
 		<script src="../js/bootstrap.min.js"></script>
 		<script src="../js/holder.min.js"></script>
 		<script src="../js/ie10-viewport-bug-workaround.js"></script>
