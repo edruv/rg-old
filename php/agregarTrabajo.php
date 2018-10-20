@@ -26,4 +26,25 @@
 
 		echo json_encode($info);
 	}
+
+	if (isset($_GET['tipotrabajo'])) {
+		$cnf = db();
+		$conn = dbconnection($cnf);
+
+		$query = $conn->prepare('SELECT * from tipotrabajo');
+		$query->execute();
+		$info = $query->fetchAll(PDO::FETCH_ASSOC);
+
+		echo json_encode($info);
+	}
+	if (isset($_GET['electrodomestico'])) {
+		$cnf = db();
+		$conn = dbconnection($cnf);
+
+		$query = $conn->prepare('SELECT * from tipoelect');
+		$query->execute();
+		$info = $query->fetchAll(PDO::FETCH_ASSOC);
+
+		echo json_encode($info);
+	}
 ?>

@@ -123,23 +123,23 @@
 						</select>
 					</div>
 					<div id="table" class="table-responsive">
-						<table class="table table-striped table-bordered">
+						<table class="table table-striped table-bordered table-condensed">
 							<tbody>
 								<tr>
-									<th>ID:</th>
+									<th class="text-center">ID</th>
+									<th class="text-center">Nombre</th>
+									<th class="text-center">Telefono</th>
+								</tr>
+								<tr>
 									<td id="cid"></td>
-									<th>Nombre:</th>
 									<td id="cnom"></td>
-								</tr>
-								<tr>
-									<th>Direccion:</th>
-									<td id="cdir" colspan="3"></td>
-								</tr>
-								<tr>
-									<!-- <th></th> -->
-									<td colspan="2" id="cdd"></td>
-									<th>Telefono:</th>
 									<td id="ctel"></td>
+								</tr>
+								<tr>
+									<th class="text-center" colspan="3">Domicilio</th>
+								</tr>
+								<tr>
+									<td id="cdir" colspan="3"></td>
 								</tr>
 							</tbody>
 						</table>
@@ -147,12 +147,14 @@
 					<div class="form-group">
 						<label for="">Tipo de Trabajo</label>
 						<select class="form-control" name="tipoDeT" id="selectTipoDeT">
-							<option></option>
+							<option selected disabled class="text-center">Selecciona un Tipo de Trabajo</option>
 						</select>
 					</div>
 					<div class="form-group">
 						<label for="Electrodomestico">Electrodomestico</label>
-						<input type="text" class="form-control" name="Electrodomestico" id="Electrodomestico" value="" />
+						<select class="form-control"  name="Electrodomestico" id="Electrodomestico">
+							<option selected disabled class="text-center">Selecciona un Tipo de Electrodomestico</option>
+						</select>
 					</div>
 					<div class="form-group col-md-6">
 						<label for="fnac">Fecha de finalización</label>
@@ -190,7 +192,6 @@
 					return this.charAt(0).toUpperCase() + this.slice(1);
 				}
 					$(document).ready(function() {
-						$('#table').hide();
 						$.ajax({
 							url: '../php/agregarTrabajo.php',
 							type: 'GET',
@@ -201,7 +202,7 @@
 							for (i = 0; i < cli.length; i++) {
 								$('#clientes').append('<option data-tokens="'+cli[i].telefono+'" value="'+cli[i].id+'" data-subtext="'+cli[i].telefono+'">'+cli[i].nombre.capitalize()+' '+cli[i].apellidop.capitalize()+' '+cli[i].apellidom.capitalize()+'</option>');
 							}
-							$('#clientes').selectpicker('refresh');
+							$('.selectpicker').selectpicker('refresh');
 						})
 						.fail(function() {
 							console.log("error");
@@ -217,17 +218,17 @@
 							.done(function(cli) {
 								$('#table').show();
 								cli = JSON.parse(cli);
+								var int = (cli[0].numeroint.length) ? ' (Int:'+cli[0].numeroint+') '	: ' ';
+
 								if (!$('#cid').length) {
 									$('#cid').append(cli[0].id);
 									$('#cnom').append(cli[0].nombre.capitalize()+' '+cli[0].apellidop.capitalize()+' '+cli[0].apellidom.capitalize());
-									$('#cdir').append(cli[0].calle.capitalize()+' N° '+cli[0].numeroext+' (Int:'+cli[0].numeroint+')');
-									$('#cdd').append('Colonia: '+cli[0].colonia.capitalize()+', Munc:'+cli[0].municipio.capitalize());
+									$('#cdir').append(cli[0].calle.capitalize()+' #'+cli[0].numeroext+ int+'Colonia: '+ cli[0].colonia.capitalize()+', '+cli[0].municipio.capitalize());
 									$('#ctel').append(cli[0].telefono);
 								} else {
 									$('#cid').html(cli[0].id);
 									$('#cnom').html(cli[0].nombre.capitalize()+' '+cli[0].apellidop.capitalize()+' '+cli[0].apellidom.capitalize());
-									$('#cdir').html(cli[0].calle.capitalize()+'  #'+cli[0].numeroext+' (Int:'+cli[0].numeroint+')');
-									$('#cdd').html('Colonia: '+cli[0].colonia.capitalize()+', Munc:'+cli[0].municipio.capitalize());
+									$('#cdir').html(cli[0].calle.capitalize()+' #'+cli[0].numeroext+ int+'Colonia: '+ cli[0].colonia.capitalize()+', '+cli[0].municipio.capitalize());
 									$('#ctel').html(cli[0].telefono);
 								}
 							})
@@ -237,10 +238,44 @@
 							// console.log(id);
 						});
 
+						$.ajax({
+							url: '../php/agregarTrabajo.php',
+							type: 'GET',
+							data: {tipotrabajo: 'on'}
+						})
+						.done(function(job) {
+							job = JSON.parse(job);
+							for (i = 0; i < job.length; i++) {
+								$('#selectTipoDeT').append('<option value="'+job[i].id+'">'+job[i].nombre.capitalize()+'</option>');
+							}
+						})
+						.fail(function() {
+							console.log("error");
+						});
+
+						$.ajax({
+							url: '../php/agregarTrabajo.php',
+							type: 'GET',
+							data: {electrodomestico: 'on'}
+						})
+						.done(function(job) {
+							job = JSON.parse(job);
+							for (i = 0; i < job.length; i++) {
+								$('#Electrodomestico').append('<option value="'+job[i].id+'">'+job[i].nombre.capitalize()+'</option>');
+							}
+						})
+						.fail(function() {
+							console.log("error");
+						});
+
+
 					});
 				</script>
 <!--  -->
 <style>
+	#table{
+		display: none;
+	}
 	form{
 		margin-bottom: 5em;
 	}
